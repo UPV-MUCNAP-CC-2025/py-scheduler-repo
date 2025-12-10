@@ -3,10 +3,20 @@ from kubernetes import client, config, watch
 
 # TODO: load_client(kubeconfig) -> CoreV1Api
 #  - Use config.load_incluster_config() by default, else config.load_kube_config()
-
+def load_client(kubeconfig:str | None) -> client.CoreV1Api:
+    if kubeconfig:
+        config.load_kube_config(kubeconfig)
+    else:
+        config.load_incluster_config()
+    return client.CoreV1Api
 # TODO: bind_pod(api, pod, node_name)
 #  - Create a V1Binding with metadata.name=pod.name and target.kind=Node,target.name=node_name
 #  - Call api.create_namespaced_binding(namespace, body)
+def bind_pod(api:client.CoreV1Api,pod:client.V1Pod,node_name:str)->None:
+    target = client.V1ObjectReference(kind="Node",name=node_name)
+    meta = client.V1ObjectMeta(name=pod.metadata.name)
+    body = client.V1Binding(metadata=meta,target=target)
+    api.create_namespaced_binding(pod.metadata.namespace,body)
 
 # TODO: choose_node(api, pod) -> str
 #  - List nodes and pick one based on a simple policy (fewest running pods)
