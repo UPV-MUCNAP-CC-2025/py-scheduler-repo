@@ -1,0 +1,90 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod-prod-1
+spec:
+  schedulerName: my-scheduler
+  tolerations:
+  - key: "env"
+    operator: "Equal"
+    value: "prod"
+    effect: "NoSchedule"
+  containers:
+  - name: pause
+    image: registry.k8s.io/pause:3.9
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod-prod-2
+spec:
+  schedulerName: my-scheduler
+  tolerations:
+  - key: "env"
+    operator: "Equal"
+    value: "prod"
+    effect: "NoSchedule"
+  containers:
+  - name: pause
+    image: registry.k8s.io/pause:3.9
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod-prod-3
+spec:
+  schedulerName: my-scheduler
+  tolerations:
+  - key: "env"
+    operator: "Equal"
+    value: "prod"
+    effect: "NoSchedule"
+  containers:
+  - name: pause
+    image: registry.k8s.io/pause:3.9
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod-non-prod-1
+spec:
+  schedulerName: my-scheduler
+  tolerations:
+  - key: "env"
+    operator: "Equal"
+    value: "non-prod"
+    effect: "NoSchedule"
+  containers:
+  - name: pause
+    image: registry.k8s.io/pause:3.9
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod-non-prod-2
+spec:
+  schedulerName: my-scheduler
+  tolerations:
+  - key: "env"
+    operator: "Equal"
+    value: "non-prod"
+    effect: "NoSchedule"
+  containers:
+  - name: pause
+    image: registry.k8s.io/pause:3.9
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod-non-prod-3
+spec:
+  schedulerName: my-scheduler
+  tolerations:
+  - key: "env"
+    operator: "Equal"
+    value: "non-prod"
+    effect: "NoSchedule"
+  containers:
+  - name: pause
+    image: registry.k8s.io/pause:3.9
+---
