@@ -25,13 +25,15 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels: {app: my-scheduler}
+    matchLabels: 
+      app: my-scheduler
   template:
     metadata:
-      labels: {app: my-scheduler}
+      labels: 
+        app: my-scheduler
     spec:
       serviceAccountName: my-scheduler
       containers:
       - name: scheduler
         image: my-py-scheduler:latest
-        args: ["--scheduler-name","my-scheduler"]
+        imagePullPolicy: IfNotPresent
