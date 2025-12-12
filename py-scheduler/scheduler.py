@@ -12,7 +12,7 @@ def bind_pod(api: client.CoreV1Api, pod, node_name: str):
     target = client.V1ObjectReference(kind="Node", name=node_name)
     meta = client.V1ObjectMeta(name=pod.metadata.name)
     body = client.V1Binding(target=target, metadata=meta)
-    api.create_namespaced_binding(pod.metadata.namespace, body)
+    api.create_namespaced_binding(pod.metadata.namespace, body, _preload_content=False)
 
 def choose_node(api: client.CoreV1Api, pod) -> str:
     nodes = api.list_node().items
